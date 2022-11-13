@@ -5,9 +5,7 @@ request:
 
 # 要抓取的 issues 配置
 issues:
-  repo: BeaCox/friendLinks-api # 仓库持有者/仓库名
+  repo: xaoxuu/friends # 仓库持有者/仓库名
   labels: 
-    - 好兄弟
-    - 小伙伴
-    - active
+    - active # 必填，可以多选
   sort: # updated-desc # 排序，按最近更新，取消此项则按创建时间排序

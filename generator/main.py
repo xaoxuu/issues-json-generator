@@ -27,10 +27,13 @@ def github_issuse(json_pool):
     baselink = 'https://github.com/'
     cfg = config.load()
     filter = cfg['issues']
+
     for lbl in filter["labels"]:
+        data_pool = []
+        filenames.append(lbl)
         try:
-            filenames.append(lbl)
             for number in range(1, 100):
+                linklist = []
                 print('page:', number)
                 url = 'https://github.com/' + filter[
                     'repo'] + '/issues?page=' + str(number) + '&q=is%3Aopen'
@@ -42,8 +45,8 @@ def github_issuse(json_pool):
                 github = request.get_data(url)
                 soup = BeautifulSoup(github, 'html.parser')
                 main_content = soup.find_all('div', {'aria-label': 'Issues'})
-                linklist = main_content[0].find_all('a',
-                                                    {'class': 'Link--primary'})
+                if len(main_content):
+                    linklist = main_content[0].find_all('a', {'class': 'Link--primary'})
                 if len(linklist) == 0:
                     print('> end')
                     break
@@ -57,11 +60,12 @@ def github_issuse(json_pool):
                         if "{" in source:
                             source = json.loads(source)
                             print(source)
-                            json_pool.append(source)
+                            data_pool.append(source)
                     except:
                         continue
         except Exception as e:
             print('> end')
+        json_pool.append(data_pool)
 
     print('------- github issues end ----------')
     print('\n')
@@ -75,6 +79,6 @@ i = 0
 for filename in filenames:
     full_path.append(outputdir + '/' + filename + '.json')
     with open(full_path[i], 'w', encoding='utf-8') as file_obj:
-        data = {'version': version, 'content': json_pool}
+        data = {'version': version, 'content': json_pool[i]}
         json.dump(data, file_obj, ensure_ascii=False, indent=2)
     i += 1

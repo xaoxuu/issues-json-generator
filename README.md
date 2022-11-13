@@ -15,8 +15,9 @@
 ```yaml
 issues:
   repo: xaoxuu/friends # 仓库持有者/仓库名
-  label: active # 筛选具有 active 标签的 issue ，取消此项则会提取所有 open 状态的 issue
-  sort: updated-desc # 排序，按最近更新，取消此项则按创建时间排序
+  labels: 
+    - active # 必填，可以多选
+  sort: # updated-desc # 排序，按最近更新，取消此项则按创建时间排序
 ```
 
 2. 打开 action 运行权限。
@@ -24,5 +25,5 @@ issues:
 ## 测试是否配置成功
 
 1. 新建 issue 并按照模板要求填写提交。
-2. 等待 Action 运行完毕，检查 `output` 分支是否有 `/v2/data.json` 文件，内容是否正确，如果正确则表示已经配置成功。
+2. 等待 Action 运行完毕，检查 `output` 分支是否有 `/v2/<labelName>.json` 文件，内容是否正确，如果正确则表示已经配置成功。
 
