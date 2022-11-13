@@ -4,6 +4,7 @@ on:
   issues:
   watch:
     types: [started]
+  workflow_dispatch:
 
 jobs:
   build:
