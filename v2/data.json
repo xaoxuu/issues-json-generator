@@ -2,10 +2,25 @@
   "version": "v2",
   "content": [
     {
-     "title": "Modifier",
-     "url": "https://shmodifier.github.io/",
-     "avatar": "https://blindarbiter.github.io/img/网站/modifier.png",
-     "description": "美丽废物"
+      "title": "Modifier",
+      "url": "https://ShModifier.github.io/"
+      "screenshot": "https://blindarbiter.github.io/img/网站/modifier.png"
+      "avatar": "https://shmodifier.github.io/img/PP.jpg"
+      "description": "美丽废物"
+    },
+    {
+      "title": "Drunkbaby",
+      "url": "https://drun1baby.top/"
+      "screenshot": "https://drun1baby.top/favicon.png"
+      "avatar": "https://drun1baby.top/favicon.png"
+      "description": "小酌一壶"
+    },
+    {
+      "title": "GhDemi",
+      "url": "https://ghdemi.github.io//"
+      "screenshot": "https://raw.githubusercontent.com/GhDemi/Picture/main/BlogImg/orange.jpg"
+      "avatar": "https://ghdemi.github.io/images/favicon.ico"
+      "description": "今晚一定早睡"
     }
   ]
 }
