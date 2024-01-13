@@ -2,17 +2,22 @@ name: Label Commenter
 
 on:
   issues:
-    types:
-      - labeled
-      - unlabeled
-      
+    types: [labeled, unlabeled]
+  pull_request_target:
+    types: [labeled, unlabeled]
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
 jobs:
   comment:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Label Commenter
         uses: peaceiris/actions-label-commenter@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          config_file: .github/configs/label-commenter-config.yml
+          config_file: .github/config/label-commenter-config.yml
