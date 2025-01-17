@@ -34,9 +34,9 @@ def getData(repo,parameter,sort,data_pool,json_pool):
             print('parse:', url)
             github = request.get_data(url)
             soup = BeautifulSoup(github, 'html.parser')
-            main_content = soup.find_all('div', {'aria-label': 'Issues'})
+            main_content = soup.find_all('ul', {'class': 'ListView-module__ul--vMLEZ'})
             if len(main_content):
-                linklist = main_content[0].find_all('a', {'class': 'Link--primary'})
+                linklist = main_content[0].find_all('a', {'class': 'Title-module__anchor--SyQM6'})
             if len(linklist) == 0:
                 print('> end')
                 break
