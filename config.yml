@@ -10,17 +10,17 @@ issues:
     {
       name: 'friendly_links_active', # 对应生成的json文件名称
       state: all, # issues状态, all/open/closed
-      labels: ['active'] # 本组必须包含的标签列表, 多个标签为and关系
+      label: ['active'] # 本组必须包含的标签列表, 多个标签为and关系
     },
     {
       name: 'friendly_links_404',
       state: all,
-      labels: ['404']
+      label: ['404']
     },
     {
       name: 'friendly_links_open_checklist',
       state: open,
-      labels: ['checklist']
+      label: ['checklist']
     }
   ]
   sort: updated-desc # 排序，按最近更新，取消此项则按创建时间排序
