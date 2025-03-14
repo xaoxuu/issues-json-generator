@@ -6,16 +6,6 @@ request:
 # 要抓取的 issues 配置
 issues:
   repo: yeminxi/friend1 # 仓库持有者/仓库名
-  groups: [
-    {
-      name: 'friendly_links_active', # 对应生成的json文件名称
-      state: all, # issues状态, all/open/closed
-      label: ['active'] # 本组必须包含的标签列表, 多个标签为and关系
-    },
-    {
-      name: 'friendly_links_open_checklist',
-      state: open,
-      label: ['checklist']
-    }
-  ]
+  label: 
+  groups:
   sort: updated-desc # 排序，按最近更新，取消此项则按创建时间排序
