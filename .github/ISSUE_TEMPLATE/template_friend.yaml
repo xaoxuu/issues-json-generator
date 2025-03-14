@@ -1,40 +1,72 @@
 name: 友链模板
-description: 自助添加友链。
+description: 自助友链申请模板
 labels: []
+assignees:
+  - Doradx
 body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 填写说明
+        欢迎自助申请本站友链，**星号(*)为必填项**。审核通过后会实时同步到博客，感谢理解，期待与您成为朋友！如果有任何不便，敬请包涵。
+        > 申请前请先添加本站友链，谢谢！
+         本站友链信息如下：
+        - 博客名称：叶泯希
+        - 博客地址：https://blog.418121.xyz
+        - 博客图标：https://blog.418121.xyz/images/avatar.webp
+        - 博客描述：意义是自己赐予的
+        - 友链地址：https://blog.418121.xyz/links/
+        - 订阅地址：https://blog.418121.xyz/feed.xml
   - type: checkboxes
     id: checks
     attributes:
-      label: 检查清单
-      description: 请认真检查以下清单中的每一项，并在相符的项前打勾。
+      label: 申请友链要求如下
+      description: 请认真检查以下当中的每一项，并在相符的项前打勾。
       options:
         - required: true
-          label: 合法的、非营利性、无商业广告、无木马植入。
+          label:  非营利性、无商业广告、无木马植入，不违反中华人民共和国网络安全法。
         - required: false
-          label: 有实质性原创内容的 HTTPS 站点，发布过至少 5 篇原创文章，内容题材不限。
+          label:  需要安全连接HTTPS，不需备案，有自己的域名（包括*.github.io等二级域名）。
         - required: false
-          label: 有独立域名，非免费域名。
+          label:   建站需半年或有十篇原创文章以上，仅限博客，类型不限，内容积极向上，保持更新。
         - required: false
-          label: 博客已运行至少半年，非刚搭建好。
+          label: 无违反国家相关法律法规和道德底线的内容，不涉反动言论和政治敏感话题，不传播色情淫秽，邪教组织等内容。
         - required: false
-          label: 与 **博主** 有至少 5 次有效互动（有内容的留言或者 issue 等）。
-  - type: textarea
-    id: config-file
+          label: 申请前请确保贵站已经添加本站。
+        - required: false
+          label:  看我心情。
+  - type: input
+    id: link-name
+    attributes:
+      label: 博客名称
+      description: 请输入您的博客名称。
+      placeholder: "如: 叶泯希"
     validations:
       required: true
+  - type: input
+    id: link-url
     attributes:
-      label: 友链信息
-      description: 请在双引号中填写，不要修改格式。
-      value: |
-        ```json
-        {
-            "title": "",
-            "url": "",
-            "avatar": "",
-            "screenshot": "",
-            "description": ""
-        }
-        ```
+      label: 博客地址
+      description: 请输入您博客的主页地址，包含https。
+      placeholder: "如: https://blog.418121.xyz"
+    validations:
+      required: true
+  - type: input
+    id: link-avatar
+    attributes:
+      label: 博客图标
+      description: 请输入您博客的图标地址，包含https，请检查是否能正常访问，且无跨域问题。
+      placeholder: "如: https://blog.418121.xyz/images/avatar.webp"
+    validations:
+      required: true
+  - type: input
+    id: link-desc
+    attributes:
+      label: 博客描述
+      description: 请输入您博客的描述。
+      placeholder: "如: 意义是自己赐予的"
+    validations:
+      required: true
   - type: input
     id: friends-html
     attributes:
@@ -42,10 +74,12 @@ body:
       description: 请输入您的友链页面地址。
       placeholder: "如: https://yoursite.com/friends/"
     validations:
-      required: true
+      required: false
   - type: input
-    id: friends-repo
+    id: rss-url
     attributes:
-      label: 友链仓库（可选）
-      description: 如果您使用 issue 作为友链源，请附上 issue 仓库链接。
-      placeholder: "如: https://github.com/yourname/friends/"
+      label: 订阅地址
+      description: 如果您使用有RSS订阅链接，请在此处填写，方便抓取最新文章
+      placeholder: "如: https://blog.418121.xyz/atom.xml"
+    validations:
+      required: false
