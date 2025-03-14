@@ -18,12 +18,14 @@ body:
               descr: 意义是自己赐予的
               rss: https://blog.418121.xyz/feed.xml
          ```
-        - 博客名称：叶泯希
-        - 博客地址：https://blog.418121.xyz
-        - 博客图标：https://blog.418121.xyz/images/avatar.webp
-        - 博客描述：意义是自己赐予的
-        - 友链地址：https://blog.418121.xyz/links/
-        - 订阅地址：https://blog.418121.xyz/feed.xml
+         ```text
+              博客名称：叶泯希
+              博客地址：https://blog.418121.xyz
+              博客头像：https://blog.418121.xyz/images/avatar.webp
+              博客描述：意义是自己赐予的
+              友链地址：https://blog.418121.xyz/links/
+              订阅地址：https://blog.418121.xyz/feed.xml
+         ```
   - type: checkboxes
     id: checks
     attributes:
@@ -32,13 +34,13 @@ body:
       options:
         - required: true
           label:  非营利性、无商业广告、无木马植入，不违反中华人民共和国网络安全法。
-        - required: false
+        - required: true
           label:  需要安全连接HTTPS，不需备案，有自己的域名（包括*.github.io等二级域名）。
-        - required: false
+        - required: true
           label:   建站需半年或有十篇原创文章以上，仅限博客，类型不限，内容积极向上，保持更新。
-        - required: false
+        - required: true
           label: 无违反国家相关法律法规和道德底线的内容，不涉反动言论和政治敏感话题，不传播色情淫秽，邪教组织等内容。
-        - required: false
+        - required: true
           label: 申请前请确保贵站已经添加本站。
         - required: false
           label:  看我心情。
@@ -61,8 +63,8 @@ body:
   - type: input
     id: link-avatar
     attributes:
-      label: 博客图标
-      description: 请输入您博客的图标地址，包含https，请检查是否能正常访问，且无跨域问题。
+      label: 博客头像
+      description: 请输入您博客的头像，包含https，请检查是否能正常访问，且无跨域问题。
       placeholder: "如: https://blog.418121.xyz/images/avatar.webp"
     validations:
       required: true
