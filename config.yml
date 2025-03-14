@@ -19,4 +19,3 @@ issues:
     }
   ]
   sort: updated-desc # 排序，按最近更新，取消此项则按创建时间排序
-  keep_raw: false # 是否需要原始issuses数据字段 (包含大量github用户信息)
