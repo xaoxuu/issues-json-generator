@@ -11,6 +11,13 @@ body:
         欢迎自助申请本站友链，**星号(*)为必填项**。审核通过后会实时同步到博客，感谢理解，期待与您成为朋友！如果有任何不便，敬请包涵。
         > 申请前请先添加本站友链，谢谢！
          本站友链信息如下：
+         ```yaml
+           -  name: 叶泯希
+              link: https://blog.418121.xyz
+              avatar: https://blog.418121.xyz/images/avatar.webp 
+              descr: 意义是自己赐予的
+              rss: https://blog.418121.xyz/feed.xml
+         ```
         - 博客名称：叶泯希
         - 博客地址：https://blog.418121.xyz
         - 博客图标：https://blog.418121.xyz/images/avatar.webp
