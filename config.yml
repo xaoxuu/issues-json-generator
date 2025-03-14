@@ -6,6 +6,7 @@ request:
 # 要抓取的 issues 配置
 issues:
   repo: yeminxi/friend1 # 仓库持有者/仓库名
+  label:  # 只能配置1个或留空，留空则所有open的issue都会被抓取。配置1个时，issue只有在具有该标签时才被抓取
   groups: [
     {
       name: 'friendly_links_active', # 对应生成的json文件名称
