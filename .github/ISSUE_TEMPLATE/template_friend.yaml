@@ -2,7 +2,7 @@ name: 友链模板
 description: 自助友链申请模板
 labels: []
 assignees:
-  - Doradx
+  - yeminxi
 body:
   - type: markdown
     attributes:
