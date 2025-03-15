@@ -75,7 +75,7 @@ def github_issuse(json_pool):
             print('start of group:', group)
             data_pool = []
             filenames.append(group)
-            parameter = (filter["label"] if filter["label"] else '') + (',' + group if group else '')
+            parameter = ((filter["label"] + ',') if filter["label"] else '') + (group if group else '')
             getData(filter["repo"], parameter, filter["sort"], data_pool, json_pool)
             print("end of group:", group)
 
