@@ -1,135 +1,109 @@
-# Issues-Json Generator
+# Hexo Theme Stellar Showcase
 
-自动提取本仓库 issues 中第一段 `JSON` 代码块并保存到仓库中，解决了直接调用 GitHub API 频率有限制以及速度过慢的问题。（你可以通过其它 N 种方式访问仓库文件）
+这是一个基于 GitHub 的自动化工具，用于管理和展示使用 Stellar 主题的 Hexo 网站。该工具可以自动检测网站是否正在使用 Stellar 主题，并通过 GitHub Issues 来管理和展示这些网站。
 
-例如动态友链：https://github.com/xaoxuu/friends
+## 快速开始
 
-随意发挥你的创意吧～
+1. Fork 本仓库到你的 GitHub 账号下
+2. 修改 `config.js` 文件中的配置信息
+3. 在你的仓库中创建一个新的 Issue 来提交网站信息
 
-> 本项目基于 [IJGP v1](#ijgp-协议) 协议
+## 功能特点
 
-## 使用方法
+- 自动解析包含网站信息的 GitHub Issues
+- 定期检查网站的可访问性和主题使用状态
+- 自动更新 Issue 标签以反映网站状态
 
-1. fork 本仓库，把 `config.yml` 配置改为自己的：
+## 配置说明
+### 生成器配置
 
-```yaml
-issues:
-  repo: xaoxuu/friends # 仓库持有者/仓库名
-  label: active  # 只能配置1个或留空，留空则所有open的issue都会被抓取。配置1个时，issue只有在具有该标签时才被抓取
-  groups: # 填写用来分组的label名称。留空则所有被抓取的issue输出至data.json，否则按照输出与组名同名的json文件
-  sort: updated-desc # 排序，按最近更新，取消此项则按创建时间排序
-```
-配置实例说明如下
-| label         | groups                      | 输出文件                | 抓取issue                                         |
-| ------------- | --------------------------- | ----------------------- | ------------------------------------------------- |
-| label: active | groups:                     | data.json               | 所有open的、label包含active的issue                |
-| label: active | groups: ["ordinary", "top"] | ordinary.json, top.json | open的、label包含active且包含ordinary或top的issue |
-| label:        | groups:                     | data.json               | 所有open的issue                                   |
-| label:        | groups: ["ordinary", "top"] | ordinary.json, top.json | open的、label包含ordinary或top的issue             |
-
-2. 打开 action 运行权限。
-
-## 测试是否配置成功
-
-1. 新建 issue 并按照模板要求填写提交。
-2. 等待 Action 运行完毕，检查 `output` 分支是否有 `/v2/data.json` 文件或`/v2/<组名>.json`，内容是否正确，如果正确则表示已经配置成功。
-
-
-## IJGP 协议
-
-**[IJGP](https://github.com/topics/ijgp)** 全称为 **Issues-Json Generator Protocol**，本协议目的在于减少重复造轮子和碎片化，改善大家跨项目使用体验。
-
-在设计工具时，在满足如下场景的需求的地方需要使用与之对应的字段名：
-
-### v1
-
-| 字段 | 类型 | 用途 |
-| :-- | :-- | :-- |
-| title | string | 主标题 |
-| url | string | 主链接 |
-| avatar | string | 头像链接 |
-| description | string | 描述，建议200字以内 |
-| keywords | string | 关键词，英文逗号隔开 |
-| screenshot | string | 屏幕截图 |
-
-```json
-{
-  "content": [
-    {
-      "title": "",
-      "url": "",
-      "avatar": "",
-      ...
-    }
-    ...
-  ]
+```js
+// config.js
+export const config = {
+  generator: {
+    // 是否启用生成器
+    enabled: true,
+    // 目标仓库地址（格式：用户名/仓库名）
+    repo: 'xaoxuu/hexo-theme-stellar-showcase',
+    // Issue排序方式
+    // updated/created: 更新时间/创建时间
+    sort: 'created',
+    // desc/asc: 降序/升序
+    direction: 'desc',
+    // 需要排除的Issue标签
+    // 包含这些标签的Issue将不会被解析
+    exclude_labels: ["审核中"]
+  }
 }
 ```
 
-### v2（修订中，暂未发布）
+### 主题检查器配置
 
-> 相比 v1 版本，缩略图字段发生变动，且数据增加 `ijgp` 字段用来表示使用的协议版本。
-
-| 字段 | 类型 | 用途 |
-| :-- | :-- | :-- |
-| title | string | 主标题 |
-| url | string | 主链接 |
-| avatar | string | 头像链接 |
-| description | string | 描述，建议200字以内 |
-| keywords | string | 关键词，英文逗号隔开 |
-| thumbnail | string | 缩略图（旧版的“屏幕截图”含义不明） |
-
-
-```json
-{
-  "ijgp": "v2",
-  "data": [
-    {
-      "title": "",
-      "url": "",
-      "avatar": "",
-      ...
-    }
-    ...
-  ]
+```js
+// config.js
+export const config = {
+  theme_checker: {
+    // 是否启用网站主题检查
+    enabled: true,
+    // 包含这些关键词的Issue将被检查
+    include_keyword: '# 站点信息',
+    // 包含这些标签的Issue将不会被检查
+    exclude_labels: ["审核中"],
+    // 主题标识meta标签选择器
+    meta_tag: 'meta[name="hexo-theme"]',
+    // 期望的主题名称
+    theme_name: 'Stellar',
+    // 主题版本号属性名
+    version_attr: 'theme-version',
+    // 主题名称属性名
+    name_attr: 'theme-name',
+    // 主题内容属性名
+    content_attr: 'content',
+    
+  }
 }
 ```
 
-### 如何使用协议
+### 链接检查器配置
 
-> 协议会根据需要增加新的字段，但已有字段不会更改，如需更改，将会创建新的协议版本，这样使用同一个版本协议的所有前后端输出和得到的数据字段都是一致的。
-
-例如网站需要显示只有头像和昵称的极简友链，那么模板可以配置为：
-
-```json
-{
-  "title": "",
-  "url": "",
-  "avatar": ""
+```js
+// config.js
+export const config = {
+  link_checker: {
+    // 是否启用链接检查
+    enabled: true,
+    // 包含这些关键词的Issue将被检查
+    include_keyword: '# 友链信息',
+    // 包含这些标签的Issue将不会被检查
+    exclude_labels: ["审核中"],
+    // 目标链接
+    link: 'https://xaoxuu.com',
+  }
 }
 ```
 
-例如希望显示友链关键词、描述，那么模板可以配置为：
+## 工作流程
 
-```json
-{
-  "title": "",
-  "url": "",
-  "avatar": "",
-  "keywords": "",
-  "description": ""
-}
-```
+1. **Issue 解析**
+   - 通过 GitHub Actions 定期运行
+   - 解析带有指定标签的 Issues
+   - 从 Issue 内容中提取网站信息
+   - 生成 `v2/data.json` 数据文件
 
-例如带有缩略图的网站收藏夹，那么模板可以配置为：
+2. **网站检查**
+   - 定期检查所有已收录网站
+   - 验证网站是否使用 Stellar 主题
+   - 检测主题版本信息
+   - 更新 Issue 标签以反映检查结果
 
-```json
-{
-  "title": "",
-  "url": "",
-  "avatar": "",
-  "thumbnail": ""
-}
-```
+## 标签说明
 
-前端（数据使用端）只需要根据实际需要，依据协议中的字段进行读取和显示。
+- `审核中`: 网站正在审核中
+- `x.x.x`: 网站正在使用的 Stellar 主题版本号
+- `无效站点`: 网站未使用 Stellar 主题或已失效
+- `无法访问`: 网站无法访问
+- `未添加友链`: 网站未添加友链
+
+## 许可证
+
+[MIT License](LICENSE)
