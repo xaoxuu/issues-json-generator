@@ -127,12 +127,16 @@ async function processData() {
             () => checkSite(item),
             config.request.retry_times
           );
-          
-          if (result.label) {
-            let labels = [...(item.labels.map(label => label.name) || []), result.label];
-            await issueManager.updateIssueLabels(item.issue_number, labels);
-            logger('info', `Finished checking site for issue #${item.issue_number}, result: ${JSON.stringify(result)}`);
+          var labels = [...new Set(item.labels.map(label => label.name) || [])];
+          if (result.valid) {
+            // 移除invalid_labels标签
+            labels = labels.filter(label => !Object.values(config.base.invalid_labels).includes(label));
           }
+          if (result.label && !labels.includes(result.label)) {
+            labels = [...labels, result.label];
+          }
+          await issueManager.updateIssueLabels(item.issue_number, labels);
+          logger('info', `Finished checking site for issue #${item.issue_number}, result: ${JSON.stringify(result)}`);
         } catch (error) {
           errors.push({ issue: item.issue_number, url: item.url, error: error.message });
           logger('error', `#${item.issue_number} Error processing site ${item.url} ${error.message}`);
