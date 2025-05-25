@@ -12,7 +12,7 @@ export const config = {
     },
     // 无效状态（不会被生成到数据文件中）
     invalid_labels: {
-      invalid_theme: '主题无效',
+      invalid_theme: '无效主题',
       unreachable: '无法访问' // 无法访问（404或其它无法访问的状态码）
     },
     // 数据文件存储路径

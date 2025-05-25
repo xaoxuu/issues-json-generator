@@ -83,6 +83,8 @@ async function checkSite(item) {
         return checkResult;
       }
     }
+    checkResult.valid = false;
+    checkResult.label = config.base.invalid_labels.invalid_theme;
     
   } catch (error) {
     // 针对特定错误类型进行处理
