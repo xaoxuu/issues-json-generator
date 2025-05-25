@@ -1,6 +1,11 @@
-# Hexo Theme Stellar Showcase
+# Issues-Json Generator
 
-这是一个基于 GitHub 的自动化工具，用于管理和展示使用 Stellar 主题的 Hexo 网站。该工具可以自动检测网站是否正在使用 Stellar 主题，并通过 GitHub Issues 来管理和展示这些网站。
+这是一个基于 GitHub 的自动化工具，自动提取本仓库 issues 中第一段 `JSON` 代码块并保存到仓库中，解决了直接调用 GitHub API 频率有限制以及速度过慢的问题。（你可以通过其它 N 种方式访问仓库文件）
+
+应用场景：
+- [收录友链，并定期检查链接是否可访问](https://xaoxuu.com/friends/)
+- [收录主题用户，并定期检查网站是否仍在使用该主题](https://xaoxuu.com/wiki/stellar/examples.html)
+
 
 ## 快速开始
 
@@ -59,7 +64,7 @@ export const config = {
     name_attr: 'theme-name',
     // 主题内容属性名
     content_attr: 'content',
-    
+
   }
 }
 ```
