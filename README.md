@@ -1,10 +1,15 @@
 # Issues-Json Generator
 
+> [!IMPORTANT]
+> 本项目已经归档不再维护，请使用功能更强大的 [动态友链及链接检查器](https://github.com/xaoxuu/links-checker) 使用方法更简单！还支持搭配 [友链文章订阅](https://github.com/xaoxuu/feed-posts-parser) 功能。
+ 
+
 这是一个基于 GitHub 的自动化工具，自动提取本仓库 issues 中第一段 `JSON` 代码块并保存到仓库中，解决了直接调用 GitHub API 频率有限制以及速度过慢的问题。（你可以通过其它 N 种方式访问仓库文件）
 
 应用场景：
 - [收录友链，并定期检查链接是否可访问](https://xaoxuu.com/friends/)
 - [收录主题用户，并定期检查网站是否仍在使用该主题](https://xaoxuu.com/wiki/stellar/examples.html)
+
 
 
 ## 快速开始
